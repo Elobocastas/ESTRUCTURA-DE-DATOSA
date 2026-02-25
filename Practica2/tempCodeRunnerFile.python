@@ -1,0 +1,67 @@
+A = [[0,0,0,0,0,0],
+     [0,0,0,0,0,0],
+     [0,0,0,0,0,0],
+     [0,0,0,0,0,0],
+     [0,0,0,0,0,0],
+     [0,0,0,0,0,0]]
+      
+def reservar(i,j):
+    if A[i-1][j-1] == 0:
+        A[i-1][j-1] = 1
+        return "OK: reservado"
+    else:
+        return "RECHAZO: ocupado"
+    
+def liberar(i, j):
+    if A[i-1][j-1] == 1:
+        A[i-1][j-1] = 0 
+        return "OK: liberao"
+    else:
+        return "RECHAZO: ya  esta libre"
+    
+def  Consultar(i, j):
+    if A[i-1][j-1] == 1:
+        A[i-1][j-1] = 0 
+
+        return "Estado: Reservado"
+    else:
+        return "estado:  libre como lombriz"
+
+def contar_reservados():
+    cont = 0
+    for i in range(len(A)):
+        for x in range(len(A)):
+            if A[i][x] == 1:
+                cont += 1
+    return cont
+
+print("Prueba 1",reservar(1,1))
+print(" Prueba2",reservar(1,2))
+print("Prueba3",reservar(1,1))
+print("Prueba4,",Consultar(1,1))
+print("Prueba5",liberar(1,1))
+print("Prueba6",liberar(1,1))
+print("Prueba7",reservar(3,4))
+print("Prueba8",reservar(6,6))
+print("Prueba9",Consultar(6,6))
+print("Prueba10",reservar(2,5))
+
+print("Los asientos reservados son", contar_reservados())
+
+
+
+def fila_mas_reservada():
+    max_reservas = -1
+    fila_ganadora = -1
+    for i in range(len(A)):
+        cont_fila = 0
+        for x in range(len(A[i])):
+            if A[i][x] == 1:
+                cont_fila += 1
+        if cont_fila > max_reservas:
+            max_reservas = cont_fila
+            fila_ganadora = i + 1 
+            
+    return fila_ganadora
+
+print("La fila con más reservas es la:", fila_mas_reservada())
